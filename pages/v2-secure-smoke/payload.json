@@ -1,0 +1,29 @@
+{
+  "v": 2,
+  "kind": "report",
+  "cipher": "AES-256-GCM",
+  "created": "2026-06-29T19:32:26+00:00",
+  "plaintext_bytes": 1236,
+  "content": {
+    "iv": "C+Hvr+idWga+vOfa",
+    "ciphertext": "LUxUcSkx2Q/9yk+sSPYfTI86u+Azx6fA0vNVzhNfrY58HfgrYYe4vuv0HynsJFDuMGgYDm7+1jwMlFoBRA/y5eifR9wyKPG8+PQdM5wb0SNfcup+dVvwhtWZpGyLc6o2HV60qycxrvDEx/B9e6xPy9px3ZYyfBIcY+03yWjC0lTnM5VIL9oepL8Zr6mrjvFdTyPcOVcgApC7W+ots4R9coccnXzn+cuTvsb7U4zIBLFAgLfRS7EuwJDEysQ+22Jia34UOhkFdcrzprp3E4FxU/exfaO9SlzgGaXPutaAc9BRwHMu1mUr9xnmKSo/qnGlY6z3sGYkQz9yJEcPveASsX8HHQJOiBX/YrNNsWSHZZbNE7X74ly4lBqKvIPzAODe5G641K53xxQfSKDoBd4LiCapwFXkheGqqI1JqErJ8DbLgeepAi3xND1II9zbxSk+E5B+kJyoiYz4ztLncHkGYm/QrtyeQAQsP9uUQBH6CC2k3MajihJz3UMJbAXOvQG7FjAtW6dER/JefZwzAuMzMeRLnrP4N/yfxl3rC6inVYSHQCNCzASxDdf3NQFa97+cwTUcDNzlRpAkthLrwy81Gm+Lzn1KhnaQpXDJLMOVYGMlpbDUz8NLe5/DS/grAK9Ycd66ma8udIbd+C4myESAezNbfzH6E0hhm98LLMu0souV7Gw5zreZXI/Eb2UIx817nDjh8J6LB6/vnqgcqONBQ9ImOPEdCva4EqAS2EklNLqhWPDwKf/fKKbtD0v58I6a1c7/0EDmYJm2h9UOC0fmr++QGxiGU6JnhZW4xIxGiMhMpN2X5IyoIxwd2ZbuGOi3BsPg/NfDaoo5Sp+X8aKw2vZBd2qCxgLxJDo+5Z8XmmsDU/3+7e6HA7e06iBTQsMMqHFzOQgXbWVH7aWlJGxoJ0mkpY446i3JMrty6Cpq02AJKkWRKeavE8dts7RCeeue93a9FSWY9Du/oOjOr172xwFLSlBx1UKohiPzHT7T8+HQD4cYvHaWqSXZOEuBJfm2lsLYgTDPuBVP2vjy2paqAuLq8tz1gvZC63fqE1lbAcBsJEWucueD0S+jWlbLFbxPYyWnT0XX5lq/8rczNrvQ7vT1j6KwPfVjFcPnlYwISDnF/Dh6FAOCzfwue8MYO1zC2WhlFmWLwawHjaQElAkOaZyvCN8a26OROH3F2l74H2IfeWX8J63UHDG9zSaLN30OnrpPngAXiAofTcRQgnK4HYYmlTgWkeu5/qUcpfDvUufBzrJQz0RF4S9ugXGK9qnd9/0vHLLePJEWoMub9Jtfjz1r4/YIz6cT085T3EpGnyYwOlQ+aUiBG0AWAFK5vWnWdwqUeTNyfY/7nLtCxOZVcmh2twBjmrtTiQpiAcbX3O/L3owwSWG4rFPLrJ4JDrfGi7wiV4wxZkd93MaJqfYXDwBsNUwco81LLGGoUlMYveDSy6kg/CUBkOHqqH2WPhLBwSPpJBa7AokcQ0cj/WUvSTmNM14jYLyr+BVrS0y1P0nHgzypUYQgTb3lRTXxaqILAVEGCdljOMXRX18YYXdqGNEIxr2cCD46lu9s/yw+0quo8s9n9LUs46kMyuKTgkwKM5mfc+FjYvnLgYuLUCfZAnASaJkCqAbSbPZ/gRsH+MTSfIVnH0lgXXQCBS+TRW+YKVJfFw=="
+  },
+  "keys": [
+    {
+      "label": "share",
+      "kdf": "PBKDF2-HMAC-SHA256",
+      "iterations": 310000,
+      "salt": "nUi85ZOzK7ovk4t39FlgkQ==",
+      "iv": "qf57EBDH+iFplry0",
+      "wrapped_key": "NmUqWmSXsU6L1VA4JGSwapxTKkc+5mrsvGZlICeQ4p4KKZGMseVO6BVTaBLzZKaA"
+    },
+    {
+      "label": "master",
+      "kdf": "PBKDF2-HMAC-SHA256",
+      "iterations": 310000,
+      "salt": "z/q25JWIe2SAX2aRgF3F3A==",
+      "iv": "Uyf/U1ZjP0aTNQ/2",
+      "wrapped_key": "5WdAIWv8fbqB9GmJTgBPaGowz8SQj5Sew0Fa0dJ0jwuwEwxu+S5w/eA/pbhtMGiH"
+    }
+  ]
+}
