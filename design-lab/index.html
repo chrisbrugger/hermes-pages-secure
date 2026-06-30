@@ -352,7 +352,17 @@
     }
     tabs.forEach(tab => tab.addEventListener('click', () => show(tab.dataset.target)));
     const initial = location.hash.replace('#', '');
-    if (initial && document.getElementById(initial)) show(initial, false);
+    if (initial && document.getElementById(initial)) {
+      show(initial, false);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
+    }
+    window.addEventListener('hashchange', () => {
+      const id = location.hash.replace('#', '');
+      if (id && document.getElementById(id)) {
+        show(id, false);
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+      }
+    });
     window.addEventListener('keydown', event => {
       if (!/^Digit[1-5]$/.test(event.code)) return;
       const index = Number(event.code.replace('Digit', '')) - 1;
