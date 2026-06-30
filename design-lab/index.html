@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hermes Report Design Lab</title>
+  <meta name="description" content="Five dark UI directions for encrypted Hermes report pages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --lab-bg: #06070a;
+      --lab-panel: rgba(255,255,255,.055);
+      --lab-line: rgba(255,255,255,.12);
+      --lab-text: #eff2f7;
+      --lab-muted: #8f99aa;
+      --lab-accent: #d7e2ff;
+      --lab-shadow: 0 24px 90px rgba(0,0,0,.48);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--lab-text);
+      background: var(--lab-bg);
+      font-family: Geist, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
+        radial-gradient(circle at 18% -8%, rgba(80,98,140,.18), transparent 34rem),
+        radial-gradient(circle at 88% 5%, rgba(116,71,44,.12), transparent 30rem);
+      background-size: 56px 56px, 56px 56px, auto, auto;
+      mask-image: linear-gradient(to bottom, #000 0, rgba(0,0,0,.85) 38%, transparent 100%);
+      z-index: 0;
+    }
+    button, select, input { font: inherit; }
+    a { color: inherit; }
+    .lab-shell { position: relative; z-index: 1; width: min(1440px, calc(100vw - 32px)); margin: 0 auto; }
+    .lab-header { padding: 28px 0 18px; position: sticky; top: 0; z-index: 30; background: linear-gradient(to bottom, rgba(6,7,10,.96), rgba(6,7,10,.78)); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.065); }
+    .lab-topline { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+    .lab-brand { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--lab-muted); letter-spacing: .02em; }
+    .lab-mark { width: 24px; height: 24px; border: 1px solid var(--lab-line); display: grid; place-items: center; color: #fff; background: #0d0f14; }
+    .lab-note { color: var(--lab-muted); font-size: 13px; }
+    .lab-title { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 22px; }
+    .lab-title h1 { margin: 0; max-width: 860px; font-size: clamp(34px, 5vw, 72px); line-height: .92; letter-spacing: -.065em; font-weight: 600; }
+    .lab-title p { margin: 0; max-width: 440px; color: var(--lab-muted); font-size: 14px; line-height: 1.55; }
+    .switcher { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; padding: 7px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.045); box-shadow: var(--lab-shadow); }
+    .switcher button { min-height: 54px; cursor: pointer; text-align: left; border: 1px solid transparent; color: #aeb6c4; background: transparent; padding: 10px 12px; transition: 160ms ease; }
+    .switcher button b { display: block; font-size: 13px; color: #f4f7fb; font-weight: 520; margin-bottom: 3px; }
+    .switcher button span { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #7f8795; }
+    .switcher button:hover { background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.10); color: #fff; }
+    .switcher button[aria-selected="true"] { background: #f2f4f8; color: #11141a; border-color: #f2f4f8; }
+    .switcher button[aria-selected="true"] b, .switcher button[aria-selected="true"] span { color: #11141a; }
+    .variant { display: none; padding: 34px 0 90px; }
+    .variant.active { display: block; }
+    .variant-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 18px; color: var(--lab-muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .variant-meta .stance { color: #f6f7f9; }
+    .frame { min-height: 760px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); box-shadow: 0 30px 100px rgba(0,0,0,.52); background: #090a0e; }
+
+    /* Shared sample blocks */
+    .mini-table { width: 100%; border-collapse: collapse; }
+    .mini-table th, .mini-table td { text-align: left; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .mini-table th { color: #7d8490; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 500; }
+    .mini-table td { color: #dfe4ec; font-size: 13px; }
+    .kbd { font-family: Geist Mono, monospace; border: 1px solid rgba(255,255,255,.16); padding: 2px 6px; font-size: 11px; color: #c6ccd6; background: rgba(0,0,0,.25); }
+
+    /* 01 Quiet Ledger */
+    .ledger { background: #08090a; color: #f5f2ea; font-family: Geist, Inter, sans-serif; }
+    .ledger .wrap { display: grid; grid-template-columns: 248px 1fr; min-height: 760px; }
+    .ledger aside { border-right: 1px solid rgba(245,242,234,.11); padding: 28px 24px; background: #07080a; }
+    .ledger .logo { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #9b9487; margin-bottom: 82px; }
+    .ledger .toc a { display: block; color: #817d76; text-decoration: none; padding: 11px 0; border-bottom: 1px solid rgba(245,242,234,.07); font-size: 13px; }
+    .ledger .toc a.active, .ledger .toc a:hover { color: #f7f1e3; }
+    .ledger main { padding: 52px min(7vw, 90px); }
+    .ledger .overline { color: #9b9487; text-transform: uppercase; letter-spacing: .18em; font-size: 11px; margin-bottom: 22px; }
+    .ledger h2 { font-size: clamp(44px, 6vw, 92px); line-height: .88; letter-spacing: -.075em; font-weight: 500; margin: 0 0 24px; max-width: 880px; }
+    .ledger .lede { max-width: 680px; color: #aca59a; font-size: 18px; line-height: 1.65; margin-bottom: 52px; }
+    .ledger .cols { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+    .ledger article { max-width: 720px; }
+    .ledger article h3 { font-size: 22px; margin: 0 0 12px; font-weight: 520; }
+    .ledger article p { color: #c9c1b4; line-height: 1.75; font-size: 15px; margin: 0 0 24px; }
+    .ledger .factbox { border: 1px solid rgba(245,242,234,.13); padding: 22px; background: rgba(255,255,255,.025); }
+    .ledger .fact { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid rgba(245,242,234,.08); }
+    .ledger .fact:last-child { border-bottom: 0; }
+    .ledger .fact span:first-child { color: #8f897e; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .ledger .fact span:last-child { color: #f4eddf; }
+
+    /* 02 Control Room */
+    .control { background: #070a0d; color: #e9f1f7; font-family: Inter, Geist, sans-serif; }
+    .control .wrap { min-height: 760px; display: grid; grid-template-columns: 72px 330px 1fr; }
+    .control .rail { border-right: 1px solid rgba(255,255,255,.08); background: #050608; padding: 18px 12px; display: flex; flex-direction: column; gap: 12px; }
+    .control .dot { width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.12); display: grid; place-items: center; color: #6fb6ff; background: #0c1117; }
+    .control .sidebar { border-right: 1px solid rgba(255,255,255,.08); padding: 22px; background: #090d12; }
+    .control .sidebar h2 { margin: 0 0 18px; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #8aa0b4; }
+    .control .search { border: 1px solid rgba(255,255,255,.12); padding: 12px; color: #718296; font-size: 13px; margin-bottom: 20px; background: #05080c; }
+    .control .item { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.075); }
+    .control .item b { display: block; font-size: 13px; margin-bottom: 5px; color: #e7eef6; }
+    .control .item span { font-size: 12px; color: #738195; }
+    .control main { padding: 24px; }
+    .control .top { display: flex; justify-content: space-between; align-items: start; gap: 20px; margin-bottom: 22px; }
+    .control h3 { margin: 0; font-size: 38px; line-height: .98; letter-spacing: -.05em; }
+    .control .health { color: #7ee787; border: 1px solid rgba(126,231,135,.25); padding: 8px 10px; background: rgba(126,231,135,.07); font-size: 12px; }
+    .control .grid { display: grid; grid-template-columns: 1.3fr .8fr; gap: 18px; }
+    .control .panel { border: 1px solid rgba(255,255,255,.10); background: #0b1016; padding: 18px; min-height: 190px; }
+    .control .panel h4 { margin: 0 0 16px; color: #91a2b6; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
+    .control .chart { height: 220px; background: linear-gradient(to top, rgba(72,152,255,.14), transparent), repeating-linear-gradient(to right, rgba(255,255,255,.045) 0 1px, transparent 1px 54px), repeating-linear-gradient(to top, rgba(255,255,255,.045) 0 1px, transparent 1px 42px); position: relative; overflow: hidden; }
+    .control .chart::after { content: ""; position: absolute; left: -4%; right: -4%; bottom: 25%; height: 2px; background: #5aa7ff; box-shadow: 80px -45px 0 #5aa7ff, 180px -8px 0 #5aa7ff, 300px -80px 0 #5aa7ff, 440px -52px 0 #5aa7ff; transform: skewY(-9deg); }
+    .control .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+    .control .metric { border: 1px solid rgba(255,255,255,.09); padding: 16px; background: #080c11; }
+    .control .metric span { color: #6e7f93; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+    .control .metric b { display: block; font-size: 26px; margin-top: 10px; }
+
+    /* 03 Noir Dossier */
+    .dossier { background: #0b0b0a; color: #e7e0d2; font-family: "IBM Plex Serif", Georgia, serif; }
+    .dossier .wrap { min-height: 760px; padding: 40px; background: radial-gradient(circle at 78% 4%, rgba(148,32,32,.17), transparent 28rem), #0b0b0a; }
+    .dossier .sheet { border: 1px solid rgba(231,224,210,.18); min-height: 680px; display: grid; grid-template-columns: 1fr 360px; background: rgba(255,255,255,.018); }
+    .dossier .body { padding: 42px 46px; border-right: 1px solid rgba(231,224,210,.13); }
+    .dossier .stamp { display: inline-block; font-family: Geist Mono, monospace; color: #d64b41; border: 1px solid rgba(214,75,65,.55); padding: 5px 9px; letter-spacing: .16em; font-size: 11px; transform: rotate(-2deg); margin-bottom: 34px; }
+    .dossier h2 { font-family: Geist, Inter, sans-serif; margin: 0 0 18px; font-size: clamp(42px, 5vw, 72px); line-height: .92; letter-spacing: -.055em; color: #f7efe0; }
+    .dossier .lead { font-size: 21px; line-height: 1.55; color: #bbb0a0; max-width: 680px; margin-bottom: 44px; }
+    .dossier .section { display: grid; grid-template-columns: 110px 1fr; gap: 28px; padding: 24px 0; border-top: 1px solid rgba(231,224,210,.12); }
+    .dossier .section .num { font-family: Geist Mono, monospace; color: #8e8678; font-size: 12px; letter-spacing: .1em; }
+    .dossier .section p { margin: 0; color: #d4c9b8; line-height: 1.72; }
+    .dossier .side { padding: 36px 28px; font-family: Geist, Inter, sans-serif; }
+    .dossier .side h3 { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #91887a; margin: 0 0 20px; }
+    .dossier .redacted { height: 13px; background: #0f0f0d; border: 1px solid rgba(231,224,210,.09); margin-bottom: 10px; }
+    .dossier .redacted.short { width: 62%; }
+    .dossier .quote { margin-top: 38px; color: #f0e7d6; font-size: 24px; line-height: 1.24; letter-spacing: -.02em; }
+
+    /* 04 Signal Grid */
+    .signal { background: #050608; color: #eff5ff; font-family: Geist, Inter, sans-serif; }
+    .signal .wrap { min-height: 760px; padding: 28px; background: linear-gradient(rgba(94,106,210,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(94,106,210,.05) 1px, transparent 1px), #050608; background-size: 36px 36px; }
+    .signal .chrome { display: grid; grid-template-columns: 1fr 440px; gap: 16px; min-height: 700px; }
+    .signal .hero, .signal .stack > * { border: 1px solid rgba(255,255,255,.09); background: rgba(8,10,14,.86); }
+    .signal .hero { padding: 34px; display: flex; flex-direction: column; justify-content: space-between; }
+    .signal .label { font-family: Geist Mono, monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #7882ff; }
+    .signal h2 { margin: 18px 0; font-size: clamp(46px, 6vw, 88px); line-height: .9; letter-spacing: -.07em; font-weight: 560; max-width: 760px; }
+    .signal .summary { max-width: 700px; color: #a8b1c3; line-height: 1.65; font-size: 16px; }
+    .signal .matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 34px; }
+    .signal .cell { min-height: 86px; border: 1px solid rgba(255,255,255,.08); padding: 12px; background: rgba(255,255,255,.025); }
+    .signal .cell span { display: block; color: #6f7787; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+    .signal .cell b { font-size: 22px; }
+    .signal .stack { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
+    .signal .panel { padding: 22px; }
+    .signal .panel h3 { margin: 0 0 18px; font-size: 14px; color: #dbe4f7; }
+    .signal .nodes { height: 245px; position: relative; background: radial-gradient(circle at 30% 32%, rgba(120,130,255,.22), transparent 9rem), radial-gradient(circle at 70% 62%, rgba(84,197,255,.14), transparent 10rem); overflow: hidden; }
+    .signal .nodes i { position: absolute; width: 9px; height: 9px; background: #9ea7ff; border-radius: 50%; box-shadow: 0 0 0 6px rgba(158,167,255,.12); }
+    .signal .nodes i:nth-child(1){left:18%;top:28%}.signal .nodes i:nth-child(2){left:46%;top:48%}.signal .nodes i:nth-child(3){left:72%;top:34%}.signal .nodes i:nth-child(4){left:62%;top:72%}.signal .nodes i:nth-child(5){left:28%;top:70%}
+    .signal .nodes::before, .signal .nodes::after { content:""; position:absolute; inset:22%; border:1px solid rgba(158,167,255,.18); transform: rotate(18deg); }
+    .signal .nodes::after { inset: 34% 18%; transform: rotate(-12deg); }
+
+    /* 05 Gallery Brief */
+    .gallery { background: #000; color: #fff; font-family: Inter, Geist, sans-serif; }
+    .gallery .wrap { min-height: 760px; padding: 24px; }
+    .gallery .mosaic { display: grid; grid-template-columns: 1.1fr .7fr .9fr; grid-template-rows: 360px 330px; gap: 12px; }
+    .gallery .tile { position: relative; overflow: hidden; background: #151515; border: 1px solid rgba(255,255,255,.10); }
+    .gallery .tile::before { content:""; position:absolute; inset:0; background: var(--art); filter: saturate(.88) contrast(1.05); transform: scale(1.02); }
+    .gallery .tile::after { content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(0,0,0,.72), transparent 58%); }
+    .gallery .tile.big { grid-row: span 2; }
+    .gallery .copy { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 2; }
+    .gallery .copy span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #c5c5c5; }
+    .gallery .copy h2 { margin: 10px 0 0; max-width: 520px; font-size: clamp(34px, 5vw, 68px); line-height: .93; letter-spacing: -.06em; font-weight: 500; }
+    .gallery .copy p { max-width: 460px; color: #d2d2d2; line-height: 1.5; }
+    .gallery .caption { position:absolute; top:18px; left:18px; z-index:2; color:#e6e6e6; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .gallery .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+    .gallery .small { min-height: 126px; border: 1px solid rgba(255,255,255,.10); background: #0d0d0d; padding: 16px; display:flex; flex-direction:column; justify-content:space-between; }
+    .gallery .small b { font-size: 20px; font-weight: 500; letter-spacing: -.03em; }
+    .gallery .small span { color: #888; font-size: 12px; }
+
+    @media (max-width: 960px) {
+      .lab-title { grid-template-columns: 1fr; }
+      .switcher { grid-template-columns: 1fr; }
+      .ledger .wrap, .control .wrap, .dossier .sheet, .signal .chrome, .gallery .mosaic { grid-template-columns: 1fr; }
+      .ledger aside, .control .rail, .control .sidebar { display: none; }
+      .gallery .mosaic { grid-template-rows: none; }
+      .gallery .tile, .gallery .tile.big { min-height: 330px; grid-row: auto; }
+      .gallery .strip, .control .cards, .signal .matrix { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="lab-header">
+    <div class="lab-shell">
+      <div class="lab-topline">
+        <div class="lab-brand"><span class="lab-mark">H</span><span>Hermes Report UI Design Lab</span></div>
+        <div class="lab-note">Five structural directions · public preview · no report content</div>
+      </div>
+      <div class="lab-title">
+        <h1>Dark report interfaces without the default AI gloss.</h1>
+        <p>These are layout and interaction directions, not simple color themes. Use the switcher to compare how a future encrypted report page could read, navigate, and present evidence.</p>
+      </div>
+      <nav class="switcher" aria-label="Design variants" role="tablist">
+        <button role="tab" aria-selected="true" data-target="ledger"><b>Quiet Ledger</b><span>Editorial / longform</span></button>
+        <button role="tab" aria-selected="false" data-target="control"><b>Control Room</b><span>Dense / operational</span></button>
+        <button role="tab" aria-selected="false" data-target="dossier"><b>Noir Dossier</b><span>Document / narrative</span></button>
+        <button role="tab" aria-selected="false" data-target="signal"><b>Signal Grid</b><span>Technical / modular</span></button>
+        <button role="tab" aria-selected="false" data-target="gallery"><b>Gallery Brief</b><span>Cinematic / visual</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="lab-shell">
+    <section id="ledger" class="variant active" aria-label="Quiet Ledger design variant">
+      <div class="variant-meta"><span class="stance">01 · Quiet Ledger</span><span>Best for analytical reports, market maps, postmortems</span></div>
+      <div class="frame ledger">
+        <div class="wrap">
+          <aside>
+            <div class="logo">Hermes / Private brief</div>
+            <nav class="toc">
+              <a class="active" href="#">Executive thesis</a>
+              <a href="#">Evidence map</a>
+              <a href="#">Material changes</a>
+              <a href="#">Open questions</a>
+              <a href="#">Appendix</a>
+            </nav>
+          </aside>
+          <main>
+            <div class="overline">Confidential briefing · June 2026</div>
+            <h2>Pricing pressure is no longer the primary risk.</h2>
+            <p class="lede">The last four weeks point to a demand-quality problem: conversions remain steady, but expansion signals and retention-adjacent behavior are softening in the same accounts.</p>
+            <div class="cols">
+              <article>
+                <h3>What changed</h3>
+                <p>Three independent signals moved together: executive sponsor activity dropped, technical adoption flattened, and support escalations shifted from onboarding to value justification.</p>
+                <h3>Interpretation</h3>
+                <p>The pattern does not suggest product breakage. It suggests stakeholders are struggling to translate usage into board-level outcomes. The next intervention should focus on proof artifacts, not discounting.</p>
+                <table class="mini-table">
+                  <thead><tr><th>Signal</th><th>Delta</th><th>Confidence</th></tr></thead>
+                  <tbody><tr><td>Expansion intent</td><td>-18%</td><td>High</td></tr><tr><td>Champion activity</td><td>-11%</td><td>Med</td></tr><tr><td>Support intensity</td><td>+9%</td><td>Med</td></tr></tbody>
+                </table>
+              </article>
+              <div class="factbox">
+                <div class="fact"><span>Accounts sampled</span><span>42</span></div>
+                <div class="fact"><span>Primary risk</span><span>Value proof</span></div>
+                <div class="fact"><span>Next action</span><span>Proof packet</span></div>
+                <div class="fact"><span>Review window</span><span>14 days</span></div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <section id="control" class="variant" aria-label="Control Room design variant">
+      <div class="variant-meta"><span class="stance">02 · Control Room</span><span>Best for monitoring reports, technical audits, recurring status reviews</span></div>
+      <div class="frame control">
+        <div class="wrap">
+          <div class="rail"><div class="dot">⌘</div><div class="dot">Σ</div><div class="dot">↗</div><div class="dot">!</div></div>
+          <aside class="sidebar">
+            <h2>Report queue</h2>
+            <div class="search">Search <span class="kbd">⌘ K</span></div>
+            <div class="item"><b>Conversion health</b><span>3 flagged cohorts</span></div>
+            <div class="item"><b>Infra spend</b><span>forecast above band</span></div>
+            <div class="item"><b>Pipeline quality</b><span>velocity stable</span></div>
+            <div class="item"><b>Open decisions</b><span>2 require review</span></div>
+          </aside>
+          <main>
+            <div class="top">
+              <div><h3>Operating picture</h3><p style="color:#8190a4;max-width:640px;line-height:1.55">A cockpit layout for reports where the reader needs scan speed, drill-down hierarchy, and clear exception handling.</p></div>
+              <div class="health">Systems nominal</div>
+            </div>
+            <div class="grid">
+              <div class="panel"><h4>Momentum trace</h4><div class="chart"></div></div>
+              <div class="panel"><h4>Priority actions</h4><table class="mini-table"><tbody><tr><td>Renewal proof packet</td><td>P0</td></tr><tr><td>Cost anomaly review</td><td>P1</td></tr><tr><td>Partner funnel note</td><td>P2</td></tr></tbody></table></div>
+            </div>
+            <div class="cards"><div class="metric"><span>Risk score</span><b>0.31</b></div><div class="metric"><span>Confidence</span><b>84%</b></div><div class="metric"><span>Watch items</span><b>7</b></div></div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <section id="dossier" class="variant" aria-label="Noir Dossier design variant">
+      <div class="variant-meta"><span class="stance">03 · Noir Dossier</span><span>Best for investigations, competitor dossiers, strategic memos</span></div>
+      <div class="frame dossier">
+        <div class="wrap">
+          <div class="sheet">
+            <div class="body">
+              <div class="stamp">EYES ONLY</div>
+              <h2>The quiet competitor is moving upstream.</h2>
+              <p class="lead">A document-forward style that makes the report feel authored, deliberate, and serious without resorting to cyberpunk neon.</p>
+              <div class="section"><div class="num">01 / FINDING</div><p>Hiring patterns and enterprise messaging changed before the public roadmap did. Treat the repositioning as intentional, not exploratory.</p></div>
+              <div class="section"><div class="num">02 / EVIDENCE</div><p>Three sales pages now lead with governance, migration safety, and auditability. Pricing pages still lag, which suggests the motion is being tested with larger accounts first.</p></div>
+              <div class="section"><div class="num">03 / RESPONSE</div><p>Do not mirror their narrative. Publish proof of deployment speed and operational independence; force the comparison back to time-to-value.</p></div>
+            </div>
+            <aside class="side">
+              <h3>Source reliability</h3>
+              <div class="redacted"></div><div class="redacted short"></div><div class="redacted"></div><div class="redacted short"></div>
+              <div class="quote">“The useful part of the story is not what changed. It is what they stopped saying.”</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="signal" class="variant" aria-label="Signal Grid design variant">
+      <div class="variant-meta"><span class="stance">04 · Signal Grid</span><span>Best for research maps, technical findings, evidence-heavy reports</span></div>
+      <div class="frame signal">
+        <div class="wrap">
+          <div class="chrome">
+            <section class="hero">
+              <div>
+                <div class="label">Signal map / evidence weighted</div>
+                <h2>What matters is now clustered in the integration layer.</h2>
+                <p class="summary">A modular grid that privileges evidence relationships over prose. Useful when the reader needs to see how observations connect before reading the narrative.</p>
+              </div>
+              <div class="matrix"><div class="cell"><span>Nodes</span><b>128</b></div><div class="cell"><span>Clusters</span><b>09</b></div><div class="cell"><span>Novel</span><b>17</b></div><div class="cell"><span>Noise</span><b>Low</b></div></div>
+            </section>
+            <aside class="stack">
+              <div class="panel"><h3>Relationship map</h3><div class="nodes"><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="panel"><h3>Strongest signals</h3><table class="mini-table"><tbody><tr><td>Partner API mentions</td><td>+42%</td></tr><tr><td>Migration objections</td><td>-16%</td></tr><tr><td>Security review depth</td><td>+23%</td></tr></tbody></table></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="variant" aria-label="Gallery Brief design variant">
+      <div class="variant-meta"><span class="stance">05 · Gallery Brief</span><span>Best for visual reports, image-rich recaps, product/market narratives</span></div>
+      <div class="frame gallery">
+        <div class="wrap">
+          <div class="mosaic">
+            <article class="tile big" style="--art: radial-gradient(circle at 30% 20%, #6c7ea8, transparent 18rem), linear-gradient(135deg,#111,#35322d 45%,#0b0b0b)"><div class="caption">Field notes</div><div class="copy"><span>Visual briefing</span><h2>Let the evidence set the pace.</h2><p>A cinematic layout for reports where images, screenshots, diagrams, and excerpts carry as much weight as the written analysis.</p></div></article>
+            <article class="tile" style="--art: radial-gradient(circle at 70% 20%, #70473c, transparent 12rem), linear-gradient(160deg,#090909,#1d2226)"><div class="caption">Frame 01</div><div class="copy"><h2 style="font-size:30px">Adoption moment</h2></div></article>
+            <article class="tile" style="--art: radial-gradient(circle at 20% 80%, #2f5c65, transparent 13rem), linear-gradient(160deg,#111,#222)"><div class="caption">Frame 02</div><div class="copy"><h2 style="font-size:30px">Market texture</h2></div></article>
+            <article class="tile" style="--art: radial-gradient(circle at 65% 45%, #81704e, transparent 12rem), linear-gradient(160deg,#0e0e0e,#252525)"><div class="caption">Frame 03</div><div class="copy"><h2 style="font-size:30px">Signal drift</h2></div></article>
+            <article class="tile" style="--art: radial-gradient(circle at 50% 50%, #606b85, transparent 13rem), linear-gradient(160deg,#090909,#171717)"><div class="caption">Frame 04</div><div class="copy"><h2 style="font-size:30px">Decision point</h2></div></article>
+          </div>
+          <div class="strip"><div class="small"><span>Strong at</span><b>Visual memory</b></div><div class="small"><span>Weak at</span><b>Dense tables</b></div><div class="small"><span>Use when</span><b>Evidence is visual</b></div><div class="small"><span>Interaction</span><b>Gallery scan</b></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabs = [...document.querySelectorAll('.switcher button')];
+    const variants = [...document.querySelectorAll('.variant')];
+    function show(id, push = true) {
+      tabs.forEach(tab => tab.setAttribute('aria-selected', tab.dataset.target === id ? 'true' : 'false'));
+      variants.forEach(panel => panel.classList.toggle('active', panel.id === id));
+      if (push) history.replaceState(null, '', '#' + id);
+    }
+    tabs.forEach(tab => tab.addEventListener('click', () => show(tab.dataset.target)));
+    const initial = location.hash.replace('#', '');
+    if (initial && document.getElementById(initial)) show(initial, false);
+    window.addEventListener('keydown', event => {
+      if (!/^Digit[1-5]$/.test(event.code)) return;
+      const index = Number(event.code.replace('Digit', '')) - 1;
+      if (tabs[index]) show(tabs[index].dataset.target);
+    });
+  </script>
+</body>
+</html>
