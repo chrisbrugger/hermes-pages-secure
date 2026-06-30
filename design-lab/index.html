@@ -211,7 +211,7 @@
   </header>
 
   <main class="lab-shell">
-    <section id="ledger" class="variant active" aria-label="Quiet Ledger design variant">
+    <section id="variant-ledger" data-variant="ledger" class="variant active" aria-label="Quiet Ledger design variant">
       <div class="variant-meta"><span class="stance">01 · Quiet Ledger</span><span>Best for analytical reports, market maps, postmortems</span></div>
       <div class="frame ledger">
         <div class="wrap">
@@ -252,7 +252,7 @@
       </div>
     </section>
 
-    <section id="control" class="variant" aria-label="Control Room design variant">
+    <section id="variant-control" data-variant="control" class="variant" aria-label="Control Room design variant">
       <div class="variant-meta"><span class="stance">02 · Control Room</span><span>Best for monitoring reports, technical audits, recurring status reviews</span></div>
       <div class="frame control">
         <div class="wrap">
@@ -280,7 +280,7 @@
       </div>
     </section>
 
-    <section id="dossier" class="variant" aria-label="Noir Dossier design variant">
+    <section id="variant-dossier" data-variant="dossier" class="variant" aria-label="Noir Dossier design variant">
       <div class="variant-meta"><span class="stance">03 · Noir Dossier</span><span>Best for investigations, competitor dossiers, strategic memos</span></div>
       <div class="frame dossier">
         <div class="wrap">
@@ -303,7 +303,7 @@
       </div>
     </section>
 
-    <section id="signal" class="variant" aria-label="Signal Grid design variant">
+    <section id="variant-signal" data-variant="signal" class="variant" aria-label="Signal Grid design variant">
       <div class="variant-meta"><span class="stance">04 · Signal Grid</span><span>Best for research maps, technical findings, evidence-heavy reports</span></div>
       <div class="frame signal">
         <div class="wrap">
@@ -325,7 +325,7 @@
       </div>
     </section>
 
-    <section id="gallery" class="variant" aria-label="Gallery Brief design variant">
+    <section id="variant-gallery" data-variant="gallery" class="variant" aria-label="Gallery Brief design variant">
       <div class="variant-meta"><span class="stance">05 · Gallery Brief</span><span>Best for visual reports, image-rich recaps, product/market narratives</span></div>
       <div class="frame gallery">
         <div class="wrap">
@@ -345,20 +345,21 @@
   <script>
     const tabs = [...document.querySelectorAll('.switcher button')];
     const variants = [...document.querySelectorAll('.variant')];
+    const hasVariant = id => variants.some(panel => panel.dataset.variant === id);
     function show(id, push = true) {
       tabs.forEach(tab => tab.setAttribute('aria-selected', tab.dataset.target === id ? 'true' : 'false'));
-      variants.forEach(panel => panel.classList.toggle('active', panel.id === id));
+      variants.forEach(panel => panel.classList.toggle('active', panel.dataset.variant === id));
       if (push) history.replaceState(null, '', '#' + id);
     }
     tabs.forEach(tab => tab.addEventListener('click', () => show(tab.dataset.target)));
     const initial = location.hash.replace('#', '');
-    if (initial && document.getElementById(initial)) {
+    if (initial && hasVariant(initial)) {
       show(initial, false);
       requestAnimationFrame(() => window.scrollTo(0, 0));
     }
     window.addEventListener('hashchange', () => {
       const id = location.hash.replace('#', '');
-      if (id && document.getElementById(id)) {
+      if (id && hasVariant(id)) {
         show(id, false);
         requestAnimationFrame(() => window.scrollTo(0, 0));
       }
