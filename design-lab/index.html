@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hermes Report Design Lab</title>
-  <meta name="description" content="Five dark UI directions for encrypted Hermes report pages." />
+  <meta name="description" content="Nine dark UI directions for encrypted Hermes report pages." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
@@ -55,7 +55,7 @@
     .lab-title { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 22px; }
     .lab-title h1 { margin: 0; max-width: 860px; font-size: clamp(34px, 5vw, 72px); line-height: .92; letter-spacing: -.065em; font-weight: 600; }
     .lab-title p { margin: 0; max-width: 440px; color: var(--lab-muted); font-size: 14px; line-height: 1.55; }
-    .switcher { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; padding: 7px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.045); box-shadow: var(--lab-shadow); }
+    .switcher { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 8px; padding: 7px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.045); box-shadow: var(--lab-shadow); }
     .switcher button { min-height: 54px; cursor: pointer; text-align: left; border: 1px solid transparent; color: #aeb6c4; background: transparent; padding: 10px 12px; transition: 160ms ease; }
     .switcher button b { display: block; font-size: 13px; color: #f4f7fb; font-weight: 520; margin-bottom: 3px; }
     .switcher button span { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #7f8795; }
@@ -178,14 +178,107 @@
     .gallery .small b { font-size: 20px; font-weight: 500; letter-spacing: -.03em; }
     .gallery .small span { color: #888; font-size: 12px; }
 
+
+
+    /* 06 Crimson Ledger */
+    .crimson-ledger { background: #050303; color: #f3ece8; font-family: Geist, Inter, sans-serif; }
+    .crimson-ledger .wrap { min-height: 760px; display: grid; grid-template-columns: 292px 1fr; background: linear-gradient(90deg, #070404 0, #070404 291px, rgba(120,15,21,.18) 292px, transparent 293px), #050303; }
+    .crimson-ledger aside { padding: 34px 28px; border-right: 1px solid rgba(201,39,49,.28); }
+    .crimson-ledger .seal { font-family: Geist Mono, monospace; color: #e24a55; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 88px; }
+    .crimson-ledger .toc a { display: grid; grid-template-columns: 22px 1fr; gap: 12px; text-decoration: none; color: #827573; padding: 13px 0; border-bottom: 1px solid rgba(226,74,85,.12); font-size: 13px; }
+    .crimson-ledger .toc a::before { content: attr(data-n); color: #7a2028; font-family: Geist Mono, monospace; }
+    .crimson-ledger .toc a.active, .crimson-ledger .toc a:hover { color: #f4ece6; }
+    .crimson-ledger main { padding: 52px min(7vw, 92px); }
+    .crimson-ledger .kicker { color: #d9464f; font-family: Geist Mono, monospace; text-transform: uppercase; letter-spacing: .18em; font-size: 11px; margin-bottom: 22px; }
+    .crimson-ledger h2 { margin: 0 0 24px; max-width: 900px; font-size: clamp(46px, 6vw, 88px); line-height: .88; letter-spacing: -.075em; font-weight: 560; color: #fff7ef; }
+    .crimson-ledger .lede { max-width: 720px; color: #b9aaa5; font-size: 18px; line-height: 1.62; margin-bottom: 48px; }
+    .crimson-ledger .body-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 42px; }
+    .crimson-ledger .prose { border-left: 2px solid #8f1d27; padding-left: 28px; }
+    .crimson-ledger .prose h3 { margin: 0 0 10px; font-size: 20px; color: #f5ece6; }
+    .crimson-ledger .prose p { margin: 0 0 24px; color: #c9bbb6; line-height: 1.72; font-size: 15px; }
+    .crimson-ledger .brief-card { border: 1px solid rgba(226,74,85,.22); background: #0a0606; padding: 22px; }
+    .crimson-ledger .brief-card h3 { margin: 0 0 18px; font-size: 12px; color: #e24a55; letter-spacing: .16em; text-transform: uppercase; }
+    .crimson-ledger .brief-card .row { display: flex; justify-content: space-between; gap: 18px; padding: 14px 0; border-top: 1px solid rgba(226,74,85,.12); }
+    .crimson-ledger .brief-card .row span:first-child { color: #8c7d78; font-size: 12px; }
+    .crimson-ledger .brief-card .row span:last-child { color: #fff4ed; }
+
+    /* 07 Redline Control */
+    .redline-control { background: #030304; color: #f2f4f6; font-family: Inter, Geist, sans-serif; }
+    .redline-control .wrap { min-height: 760px; display: grid; grid-template-columns: 84px 360px 1fr; background: #030304; }
+    .redline-control .rail { background: #070303; border-right: 1px solid rgba(255,255,255,.08); padding: 18px 14px; display: flex; flex-direction: column; gap: 12px; }
+    .redline-control .rail div { height: 44px; display: grid; place-items: center; border: 1px solid rgba(215,42,55,.30); color: #ff5360; background: rgba(215,42,55,.06); font-family: Geist Mono, monospace; }
+    .redline-control .queue { background: #070707; border-right: 1px solid rgba(255,255,255,.08); padding: 24px; }
+    .redline-control .queue h2 { margin: 0 0 22px; font-size: 13px; color: #ff5360; letter-spacing: .16em; text-transform: uppercase; }
+    .redline-control .incident { padding: 16px 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .redline-control .incident b { display: block; font-size: 14px; color: #f3f5f6; margin-bottom: 6px; }
+    .redline-control .incident span { color: #8e969f; font-size: 12px; }
+    .redline-control .incident.hot b::after { content: "  P0"; color: #ff5360; font-family: Geist Mono, monospace; font-size: 11px; }
+    .redline-control main { padding: 26px; }
+    .redline-control .mast { display: grid; grid-template-columns: 1fr auto; gap: 22px; align-items: start; margin-bottom: 20px; }
+    .redline-control h3 { margin: 0; font-size: clamp(36px, 4vw, 58px); line-height: .92; letter-spacing: -.065em; }
+    .redline-control .subtitle { max-width: 660px; color: #939aa3; line-height: 1.56; margin-top: 12px; }
+    .redline-control .status { border: 1px solid rgba(255,83,96,.38); color: #ff6670; padding: 10px 12px; background: rgba(255,83,96,.065); font-size: 12px; font-family: Geist Mono, monospace; }
+    .redline-control .dash { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
+    .redline-control .panel { border: 1px solid rgba(255,255,255,.10); background: #08090a; padding: 18px; }
+    .redline-control .panel h4 { margin: 0 0 16px; color: #8d939d; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+    .redline-control .pulse { height: 246px; background: repeating-linear-gradient(to right, rgba(255,255,255,.045) 0 1px, transparent 1px 48px), repeating-linear-gradient(to top, rgba(255,255,255,.04) 0 1px, transparent 1px 38px), linear-gradient(to top, rgba(198,27,39,.16), transparent); position: relative; overflow: hidden; }
+    .redline-control .trace { position: absolute; inset: 18px 20px; width: calc(100% - 40px); height: calc(100% - 36px); }
+    .redline-control .trace path { fill: none; stroke: #ff4655; stroke-width: 2; vector-effect: non-scaling-stroke; }
+    .redline-control .trace path:nth-child(2) { opacity: .74; }
+    .redline-control .trace path:nth-child(3) { opacity: .52; }
+    .redline-control .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .redline-control .metric { border: 1px solid rgba(255,255,255,.09); padding: 16px; background: #060607; }
+    .redline-control .metric span { color: #747b85; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+    .redline-control .metric b { display: block; margin-top: 10px; font-size: 25px; }
+
+    /* 08 Obsidian Brief */
+    .obsidian-brief { background: #050505; color: #f4f0eb; font-family: Geist, Inter, sans-serif; }
+    .obsidian-brief .wrap { min-height: 760px; padding: 38px; background: radial-gradient(circle at 96% 6%, rgba(153,21,34,.17), transparent 28rem), #050505; }
+    .obsidian-brief .paper { min-height: 684px; border: 1px solid rgba(255,255,255,.10); display: grid; grid-template-columns: 1fr 380px; background: rgba(255,255,255,.018); }
+    .obsidian-brief .main { padding: 44px 48px; }
+    .obsidian-brief .topbar { display: flex; justify-content: space-between; color: #8b7d78; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 78px; }
+    .obsidian-brief h2 { margin: 0 0 26px; font-size: clamp(44px, 6vw, 82px); line-height: .9; letter-spacing: -.075em; font-weight: 500; color: #fff7f0; max-width: 860px; }
+    .obsidian-brief .intro { max-width: 720px; color: #afa29d; line-height: 1.68; font-size: 17px; margin-bottom: 44px; }
+    .obsidian-brief .timeline { display: grid; gap: 0; max-width: 780px; }
+    .obsidian-brief .step { display: grid; grid-template-columns: 90px 1fr; gap: 24px; padding: 21px 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .obsidian-brief .step b { color: #d2323f; font-family: Geist Mono, monospace; font-size: 12px; }
+    .obsidian-brief .step p { margin: 0; color: #d2c7c1; line-height: 1.58; }
+    .obsidian-brief aside { border-left: 1px solid rgba(255,255,255,.09); padding: 40px 28px; background: rgba(136,18,28,.04); }
+    .obsidian-brief aside h3 { margin: 0 0 18px; color: #d2323f; letter-spacing: .16em; text-transform: uppercase; font-size: 11px; }
+    .obsidian-brief .note { border-left: 2px solid #9c1f2b; padding-left: 16px; color: #c8bab3; line-height: 1.62; margin-bottom: 28px; }
+    .obsidian-brief .score { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .obsidian-brief .score div { border: 1px solid rgba(255,255,255,.09); padding: 14px; }
+    .obsidian-brief .score span { display: block; color: #80746f; font-size: 11px; margin-bottom: 8px; }
+    .obsidian-brief .score b { font-size: 22px; }
+
+    /* 09 Command Ledger */
+    .command-ledger { background: #030303; color: #f1f3f5; font-family: Geist, Inter, sans-serif; }
+    .command-ledger .wrap { min-height: 760px; display: grid; grid-template-columns: 1fr 500px; }
+    .command-ledger .read { padding: 48px min(6vw, 72px); background: #050505; border-right: 1px solid rgba(255,255,255,.08); }
+    .command-ledger .read .eyebrow { color: #bd2532; font-family: Geist Mono, monospace; letter-spacing: .18em; text-transform: uppercase; font-size: 11px; margin-bottom: 24px; }
+    .command-ledger h2 { margin: 0 0 22px; max-width: 760px; font-size: clamp(44px, 5.5vw, 78px); line-height: .9; letter-spacing: -.072em; font-weight: 560; }
+    .command-ledger .lede { max-width: 700px; color: #a5adb5; line-height: 1.64; font-size: 17px; margin-bottom: 44px; }
+    .command-ledger .readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 42px; }
+    .command-ledger .readout div { border: 1px solid rgba(255,255,255,.09); padding: 15px; background: #080808; }
+    .command-ledger .readout span { display: block; color: #727a83; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .command-ledger .readout b { font-size: 24px; }
+    .command-ledger article { max-width: 760px; border-top: 1px solid rgba(255,255,255,.09); padding-top: 26px; }
+    .command-ledger article p { color: #c9d0d5; line-height: 1.72; }
+    .command-ledger .console { padding: 22px; background: #060202; }
+    .command-ledger .terminal { height: 100%; border: 1px solid rgba(189,37,50,.30); background: #090606; padding: 20px; font-family: Geist Mono, monospace; color: #d7dce2; }
+    .command-ledger .terminal .bar { display: flex; justify-content: space-between; color: #bd2532; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgba(189,37,50,.22); margin-bottom: 18px; }
+    .command-ledger .line { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 13px; }
+    .command-ledger .line span { color: #777f88; }
+    .command-ledger .terminal .alert { margin-top: 28px; padding: 16px; border: 1px solid rgba(255,71,86,.34); color: #ff5b66; background: rgba(255,71,86,.055); font-family: Geist, Inter, sans-serif; }
+
     @media (max-width: 960px) {
       .lab-title { grid-template-columns: 1fr; }
       .switcher { grid-template-columns: 1fr; }
-      .ledger .wrap, .control .wrap, .dossier .sheet, .signal .chrome, .gallery .mosaic { grid-template-columns: 1fr; }
-      .ledger aside, .control .rail, .control .sidebar { display: none; }
+      .ledger .wrap, .control .wrap, .dossier .sheet, .signal .chrome, .gallery .mosaic, .crimson-ledger .wrap, .redline-control .wrap, .obsidian-brief .paper, .command-ledger .wrap { grid-template-columns: 1fr; }
+      .ledger aside, .control .rail, .control .sidebar, .crimson-ledger aside, .redline-control .rail, .redline-control .queue { display: none; }
       .gallery .mosaic { grid-template-rows: none; }
       .gallery .tile, .gallery .tile.big { min-height: 330px; grid-row: auto; }
-      .gallery .strip, .control .cards, .signal .matrix { grid-template-columns: 1fr 1fr; }
+      .gallery .strip, .control .cards, .signal .matrix, .redline-control .metrics, .command-ledger .readout { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -194,11 +287,11 @@
     <div class="lab-shell">
       <div class="lab-topline">
         <div class="lab-brand"><span class="lab-mark">H</span><span>Hermes Report UI Design Lab</span></div>
-        <div class="lab-note">Five structural directions · public preview · no report content</div>
+        <div class="lab-note">Nine structural directions · public preview · no report content</div>
       </div>
       <div class="lab-title">
         <h1>Dark report interfaces without the default AI gloss.</h1>
-        <p>These are layout and interaction directions, not simple color themes. Use the switcher to compare how a future encrypted report page could read, navigate, and present evidence.</p>
+        <p>These are layout and interaction directions, not simple color themes. Use the switcher to compare how a future encrypted report page could read, navigate, and present evidence. New black/crimson explorations build on Quiet Ledger and Control Room.</p>
       </div>
       <nav class="switcher" aria-label="Design variants" role="tablist">
         <button role="tab" aria-selected="true" data-target="ledger"><b>Quiet Ledger</b><span>Editorial / longform</span></button>
@@ -206,6 +299,10 @@
         <button role="tab" aria-selected="false" data-target="dossier"><b>Noir Dossier</b><span>Document / narrative</span></button>
         <button role="tab" aria-selected="false" data-target="signal"><b>Signal Grid</b><span>Technical / modular</span></button>
         <button role="tab" aria-selected="false" data-target="gallery"><b>Gallery Brief</b><span>Cinematic / visual</span></button>
+        <button role="tab" aria-selected="false" data-target="crimson-ledger"><b>Crimson Ledger</b><span>Editorial / crimson</span></button>
+        <button role="tab" aria-selected="false" data-target="redline-control"><b>Redline Control</b><span>Ops / crimson</span></button>
+        <button role="tab" aria-selected="false" data-target="obsidian-brief"><b>Obsidian Brief</b><span>Memo / blackline</span></button>
+        <button role="tab" aria-selected="false" data-target="command-ledger"><b>Command Ledger</b><span>Hybrid / command</span></button>
       </nav>
     </div>
   </header>
@@ -340,6 +437,69 @@
         </div>
       </div>
     </section>
+
+    <section id="variant-crimson-ledger" data-variant="crimson-ledger" class="variant" aria-label="Crimson Ledger design variant">
+      <div class="variant-meta"><span class="stance">06 · Crimson Ledger</span><span>Quiet Ledger branch · black/crimson editorial</span></div>
+      <div class="frame crimson-ledger">
+        <div class="wrap">
+          <aside>
+            <div class="seal">Hermes / restricted ledger</div>
+            <nav class="toc">
+              <a class="active" data-n="01" href="#">Thesis</a>
+              <a data-n="02" href="#">Change log</a>
+              <a data-n="03" href="#">Counter-signal</a>
+              <a data-n="04" href="#">Decision</a>
+              <a data-n="05" href="#">Appendix</a>
+            </nav>
+          </aside>
+          <main>
+            <div class="kicker">Blackline memo · owner view</div>
+            <h2>The strongest signal is the one nobody is optimizing for.</h2>
+            <p class="lede">A quieter crimson pass on the editorial report: mostly black, mostly type, with red used as a structural marker instead of decoration.</p>
+            <div class="body-grid">
+              <article class="prose">
+                <h3>What changed</h3>
+                <p>The expansion story improved while the activation story became noisier. That is usually a sign of better qualification, not a product problem.</p>
+                <h3>Recommendation</h3>
+                <p>Move the report toward a decision memo: one thesis, a few proof blocks, and a concise risk ledger that keeps the reader inside the argument.</p>
+                <table class="mini-table"><tbody><tr><td>Activation quality</td><td>-7%</td><td>Watch</td></tr><tr><td>Expansion readiness</td><td>+14%</td><td>Strong</td></tr><tr><td>Proof coverage</td><td>61%</td><td>Gap</td></tr></tbody></table>
+              </article>
+              <aside class="brief-card"><h3>Decision card</h3><div class="row"><span>Confidence</span><span>High</span></div><div class="row"><span>Time horizon</span><span>21 days</span></div><div class="row"><span>Owner action</span><span>Proof memo</span></div><div class="row"><span>Risk</span><span>Message drift</span></div></aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <section id="variant-redline-control" data-variant="redline-control" class="variant" aria-label="Redline Control design variant">
+      <div class="variant-meta"><span class="stance">07 · Redline Control</span><span>Control Room branch · black/crimson operations</span></div>
+      <div class="frame redline-control">
+        <div class="wrap">
+          <div class="rail"><div>H</div><div>Σ</div><div>!</div><div>↯</div></div>
+          <aside class="queue"><h2>Redline queue</h2><div class="incident hot"><b>Renewal evidence gap</b><span>board-ready proof missing</span></div><div class="incident"><b>Pipeline quality</b><span>stable but concentrated</span></div><div class="incident"><b>Cost anomaly</b><span>needs attribution</span></div><div class="incident"><b>Churn forecast</b><span>inside tolerance</span></div></aside>
+          <main>
+            <div class="mast"><div><h3>Exceptions first. Narrative second.</h3><p class="subtitle">A sharper operational direction: the page behaves like a report cockpit, with crimson reserved for exception states and redline decisions.</p></div><div class="status">P0 OPEN</div></div>
+            <div class="dash"><div class="panel"><h4>Exposure pulse</h4><div class="pulse"><svg class="trace" viewBox="0 0 420 210" aria-hidden="true"><path d="M10 166 L96 145 L182 119 L282 91 L410 62"/><path d="M80 126 L166 108 L252 88 L338 62"/><path d="M194 178 L270 158 L334 132 L396 116"/></svg></div></div><div class="panel"><h4>Action register</h4><table class="mini-table"><tbody><tr><td>Ship proof deck</td><td>Today</td></tr><tr><td>Run account audit</td><td>48h</td></tr><tr><td>Review spend model</td><td>72h</td></tr></tbody></table></div></div>
+            <div class="metrics"><div class="metric"><span>Exposure</span><b>0.47</b></div><div class="metric"><span>Confidence</span><b>78%</b></div><div class="metric"><span>Age</span><b>3d</b></div><div class="metric"><span>Owner</span><b>CB</b></div></div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <section id="variant-obsidian-brief" data-variant="obsidian-brief" class="variant" aria-label="Obsidian Brief design variant">
+      <div class="variant-meta"><span class="stance">08 · Obsidian Brief</span><span>Quiet Ledger branch · memo with annotation rail</span></div>
+      <div class="frame obsidian-brief">
+        <div class="wrap"><div class="paper"><main class="main"><div class="topbar"><span>Hermes brief / private</span><span>v0.3</span></div><h2>Separate the proof from the persuasion.</h2><p class="intro">A cleaner memo layout that keeps the elegance of Quiet Ledger but introduces a right-side annotation rail for status, assumptions, and unresolved risk.</p><div class="timeline"><div class="step"><b>01</b><p>Lead with the conclusion, not the investigation history. The reader should know the decision before seeing the evidence.</p></div><div class="step"><b>02</b><p>Use crimson as an editorial instrument: open issue, key risk, blocked assumption. Never as decoration.</p></div><div class="step"><b>03</b><p>Keep reports skimmable by giving every section a job: prove, qualify, or decide.</p></div></div></main><aside><h3>Annotation rail</h3><p class="note">This area is for owner-facing metadata: confidence, assumptions, unresolved questions, and next action.</p><div class="score"><div><span>Confidence</span><b>82%</b></div><div><span>Open risks</span><b>03</b></div><div><span>Impact</span><b>High</b></div><div><span>Window</span><b>14d</b></div></div></aside></div></div>
+      </div>
+    </section>
+
+    <section id="variant-command-ledger" data-variant="command-ledger" class="variant" aria-label="Command Ledger design variant">
+      <div class="variant-meta"><span class="stance">09 · Command Ledger</span><span>Hybrid branch · editorial report plus command console</span></div>
+      <div class="frame command-ledger">
+        <div class="wrap"><main class="read"><div class="eyebrow">Command ledger / analysis mode</div><h2>A report should feel calm until something requires action.</h2><p class="lede">This hybrid keeps the longform reading surface but adds a persistent command-style panel for checks, provenance, and follow-up actions.</p><div class="readout"><div><span>Checks</span><b>18</b></div><div><span>Blocked</span><b>02</b></div><div><span>Next</span><b>Ship</b></div></div><article><p>The design stance is deliberately austere: a black reading pane, a crimson command surface, and just enough structure to move from analysis to action without turning the page into a dashboard.</p></article></main><aside class="console"><div class="terminal"><div class="bar"><span>Hermes command pane</span><span>live</span></div><div class="line"><span>$</span> verify evidence map</div><div class="line"><span>ok</span> 14 citations linked</div><div class="line"><span>$</span> check contradictions</div><div class="line"><span>warn</span> 2 assumptions untested</div><div class="line"><span>$</span> draft next action</div><div class="alert">Recommended: send proof memo before price discussion.</div></div></aside></div>
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -365,8 +525,8 @@
       }
     });
     window.addEventListener('keydown', event => {
-      if (!/^Digit[1-5]$/.test(event.code)) return;
-      const index = Number(event.code.replace('Digit', '')) - 1;
+      if (!/^(Digit|Numpad)[1-9]$/.test(event.code)) return;
+      const index = Number(event.code.replace(/^(Digit|Numpad)/, '')) - 1;
       if (tabs[index]) show(tabs[index].dataset.target);
     });
   </script>
