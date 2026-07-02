@@ -58,7 +58,7 @@ body {
 }
 a { color: var(--accent-2); text-decoration-thickness: .08em; text-underline-offset: .20em; }
 a:hover { color: var(--text-strong); }
-.site-shell, .report-shell { width: min(var(--max), calc(100vw - 32px)); margin: 0 auto; }
+.site-shell, .report-shell { width: min(var(--max), calc(100vw - 48px)); margin: 0 auto; }
 .report-header, .hero, .report-hero { padding: clamp(44px, 7vw, 82px) 0 32px; }
 .eyebrow {
   display: inline-flex;
@@ -85,7 +85,10 @@ h1 {
 .report-body {
   position: relative;
   margin: 18px 0 78px;
-  padding: clamp(30px, 5vw, 58px);
+  --body-pad: clamp(30px, 5vw, 58px);
+  --rail-gutter: clamp(28px, 4vw, 46px);
+  padding: var(--body-pad);
+  padding-left: calc(var(--body-pad) + var(--rail-gutter));
   border: 1px solid var(--line);
   border-left-color: var(--line-strong);
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--accent) 6%), var(--surface));
@@ -94,15 +97,13 @@ h1 {
 .report-body::before {
   content: "";
   position: absolute;
-  left: clamp(30px, 5vw, 58px);
+  left: var(--body-pad);
   top: 0;
   bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, transparent 4%, var(--accent) 14%, color-mix(in srgb, var(--accent) 45%, transparent) 72%, transparent 100%);
   opacity: .92;
 }
-.report-body > * { margin-left: clamp(28px, 4vw, 42px); }
-.report-body > .full-bleed, .report-body > .redline-rail, .report-body > .ops-layout, .report-body > .report-grid, .report-body > .hero-card { margin-left: 0; }
 .report-body h2, .index-grid h2 { margin: 2.5rem 0 .75rem; color: var(--text-strong); font-size: clamp(1.85rem, 3.4vw, 3.1rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 590; }
 .report-body h2:first-child { margin-top: 0; }
 .report-body h3 { margin: 2rem 0 .45rem; color: var(--text-strong); font-size: 1.28rem; line-height: 1.2; letter-spacing: -.025em; }
@@ -155,9 +156,9 @@ footer { color: var(--muted-2); border-top: 1px solid var(--line); padding: 24px
 .tag { display: inline-flex; padding: .16rem .46rem; border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); background: var(--accent-soft); color: var(--accent-2); font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 980px) {
   h1 { font-size: clamp(2.65rem, 12vw, 4.8rem); }
-  .report-body { padding: 26px 22px; }
+  .site-shell, .report-shell { width: min(var(--max), calc(100vw - 28px)); }
+  .report-body { --body-pad: 22px; --rail-gutter: 24px; padding: 26px 22px 26px 46px; }
   .report-body::before { left: 22px; }
-  .report-body > * { margin-left: 26px; }
   .report-grid, .ops-layout, .redline-rail { grid-template-columns: 1fr; }
 }
 @media print {
