@@ -12,7 +12,9 @@
   const mode = app.dataset.mode || 'report';
 
   function setTheme(theme) {
-    const selected = theme || localStorage.getItem('hermesPagesTheme') || 'midnight';
+    const aliases = { midnight: 'ledger', aurora: 'redline', paper: 'ledger', slate: 'obsidian' };
+    const raw = theme || localStorage.getItem('hermesPagesTheme') || 'ledger';
+    const selected = aliases[raw] || raw;
     document.documentElement.dataset.theme = selected;
     if (themeEl) themeEl.value = selected;
     localStorage.setItem('hermesPagesTheme', selected);

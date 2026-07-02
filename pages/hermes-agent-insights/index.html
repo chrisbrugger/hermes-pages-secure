@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hermes Secure Reports</title>
-  <link rel="stylesheet" href="assets/shell.css">
-  <script src="assets/decrypt.js" defer></script>
+  <title>Protected Hermes Report</title>
+  <link rel="stylesheet" href="../../assets/shell.css">
+  <script src="../../assets/decrypt.js" defer></script>
 </head>
-<body data-secure-page data-mode="index" data-payload="index_payload.json">
+<body data-secure-page data-mode="report" data-payload="payload.json">
   <div id="unlock" class="unlock-wrap">
     <main class="panel">
-      <span class="eyebrow">Encrypted report index</span>
-      <h1>Hermes Secure Reports</h1>
-      <p>This overview is encrypted. Enter your master passphrase to view report headlines and navigation.</p>
+      <span class="eyebrow">Encrypted Hermes report</span>
+      <h1>Protected report</h1>
+      <p>This report is encrypted. Enter the report passphrase or your master passphrase to decrypt it locally in this browser.</p>
       <form id="form">
-        <label for="passphrase">Master passphrase</label>
+        <label for="passphrase">Passphrase</label>
         <input id="passphrase" name="passphrase" type="password" autocomplete="current-password" autofocus required>
         <label for="theme">Theme</label>
         <select id="theme" name="theme">
@@ -23,10 +23,10 @@
           <option value="obsidian">Obsidian</option>
           <option value="ember">Ember</option>
         </select>
-        <button id="button" type="submit">Unlock overview</button>
+        <button id="button" type="submit">Decrypt report</button>
         <div id="status" class="status"></div>
       </form>
-      <p class="note">The public page contains no report headlines until this index is decrypted locally.</p>
+      <p class="note">Decryption uses WebCrypto PBKDF2 + AES-GCM. Nothing is sent to a server.</p>
     </main>
   </div>
   <iframe id="frame" class="report-frame" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"></iframe>
