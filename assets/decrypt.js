@@ -12,9 +12,9 @@
   const mode = app.dataset.mode || 'report';
 
   function setTheme(theme) {
-    const aliases = { midnight: 'ledger', aurora: 'redline', paper: 'ledger', slate: 'obsidian' };
+    const allowed = new Set(['ledger', 'redline', 'obsidian', 'ember']);
     const raw = theme || localStorage.getItem('hermesPagesTheme') || 'ledger';
-    const selected = aliases[raw] || raw;
+    const selected = allowed.has(raw) ? raw : 'ledger';
     document.documentElement.dataset.theme = selected;
     if (themeEl) themeEl.value = selected;
     localStorage.setItem('hermesPagesTheme', selected);
@@ -87,7 +87,7 @@
   }
 
   function injectTheme(html, theme) {
-    const safeTheme = String(theme || 'midnight').replace(/[^a-z0-9_-]/gi, '');
+    const safeTheme = String(theme || 'ledger').replace(/[^a-z0-9_-]/gi, '');
     if (/<html\b/i.test(html)) {
       return html.replace(/<html\b([^>]*)>/i, (match, attrs) => {
         if (/data-theme=/i.test(attrs)) return `<html${attrs.replace(/data-theme=["'][^"']*["']/i, `data-theme="${safeTheme}"`)}>`;
